@@ -19,4 +19,3 @@ def linea_dic(linea):
 doc = open_doc()
 linea = read_linea(doc)
 print(linea)
-
