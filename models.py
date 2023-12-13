@@ -18,14 +18,12 @@ def read_linea(doc):
                 linea=linea.replace(i,"")
 
         linea = linea.split()
-        
-        
-              
+                  
         green = []
         red = []
         blue = []
-        num_juego = linea[1]
-        print("Juego Nº: ",num_juego)
+        num_juego = int(linea[1])
+        
         
         for i in linea:
             
@@ -55,32 +53,39 @@ def read_linea(doc):
                 blue.append(num)
                 
                 linea.pop(pos)
-                    
 
-        
-        print("green= ",sum(green))
-        print("red= ",sum(red))
-        print("blue= ",sum(blue))
+        green = sum(green)
+        red = sum(red)
+        blue = sum(blue)            
+
+        print("Juego Nº: ",num_juego)
+        print("green= ",green)
+        print("red= ",red)
+        print("blue= ",blue)
+
+#revisar esta oprecion que suma jugadas que no cumplen
+        suma_jugadas= []
+
+        if red > 12:
+            suma_jugadas.append(num_juego)
+        elif green > 13:
+            suma_jugadas.append(num_juego)
+        elif blue > 14:
+            suma_jugadas.append(num_juego)
+
+        print(suma_jugadas)
          
              
-         
 
-            
-        
-        
-        
-        
         
 
-    return 
+    return suma_jugadas
 
- #continuar con  creacion de diccionario por cada juego         
-#def linea_dic(linea):
-#    linea_dic = ast.literal_eval(linea)
-#    print(linea_dic)
-#    return linea_dic
+
+
 
 
 doc = open_doc()
-linea = read_linea(doc)
+solucion = read_linea(doc)
+print(solucion)
 
