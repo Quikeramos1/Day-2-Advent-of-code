@@ -1,156 +1,66 @@
-import ast
 
 def open_doc():
-    doc = open("input.txt", "r")
+    doc = open("input.txt").read().strip()
     return doc
 
-def quita_simbolos(texto):
-    simbols=(",.:""[]'`'")
-    return "". join(char for char in texto if char not in simbols)
-
-def read_linea(doc):
-    lineas= []
-    simbols= (",.:""[]'`'")
-    
-    for linea in doc:
-        linea = linea.split('\n')
+def read_lines(doc):
+    colores = ["red","green","blue", "red;","green;","blue;"]
+    no_posible = []
+    solucion = []
+    for line in doc.split('\n'):
+        id_game,line = line.split(":")
+        jugada = line.split(";")
+        juego = line.split(",")
+        id_game = id_game.split()
         
-        linea = str(linea)
-        for i in linea:
-            if i in simbols:
-                linea=linea.replace(i,"")
+        for i in (juego):
+            i = i.split()
+            for c in i:
+                pos = i.index(c)
+                value = pos -1
+                if c in colores:
+                    if c == "red" or c == "red;":
+                        if int(i[value]) > 12:
+                            if int(id_game[1]) not in no_posible:
+                                no_posible.append(int(id_game[1]))
+                            
+                        
 
-        linea = linea.split()
-        lineas.append(linea)
-      
-    return lineas    
+                    elif c == "green" or c == "green;":
+                        if int(i[value]) > 13:
+                            if int(id_game[1]) not in no_posible:
+                                no_posible.append(int(id_game[1]))
+                           
+                        
+                       
+                    elif c == "blue" or c == "blue;":
+                        if int(i[value]) > 14:
+                            if int(id_game[1]) not in no_posible:
+                                no_posible.append(int(id_game[1]))
+                            
 
-def cuenta_linea(lineas):
-    green = []
-    red = []
-    blue = []
-    suma_jugadasko= []
-    suma_jugadasok = []
-
-    for linea in lineas:
-        linea = linea
-        num_juego = int(linea[1])
-        
-        
-        
-        for i in linea:
-    
-            if i == "green" or i == "green;":
-                pos = linea.index(i)
-                pos_num = int(pos)-1
-                num = linea[pos_num]
-                num = int(num)
-                green.append(num)
-                linea.pop(pos)
-                if num > 13:
-                    suma_jugadasko.append(num_juego)
-                    print(num_juego)
-                    print ("Este juego no cumple porque green es:",num)
-                    break
-                else:
-                    if num_juego in suma_jugadasok:
-                        break
-                    else:
-                        suma_jugadasok.append(num_juego)
-                        break
-                
-
-            elif i == "red" or i == "red;": 
-                if num_juego == 43:
-                    print("Ahora")
-                pos = linea.index(i)
-                pos_num = int(pos)-1
-                num = linea[pos_num]
-                num = int(num)
-                red.append(num)
-                linea.pop(pos) 
-                if num > 12:
-                    suma_jugadasko.append(num_juego)
-                    print(num_juego)
-                    print ("Este juego no cumple porque red es:",num)
-                    break
-                else:
-                    if num_juego in suma_jugadasok:
-                        break
-                    else:
-                        suma_jugadasok.append(num_juego)
-                        break
-                
-                
-                
-
-            elif i == "blue" or i == "blue;":
-                pos = linea.index(i)
-                pos_num = int(pos)-1
-                num = linea[pos_num]
-                num = int(num)
-                blue.append(num)
-                linea.pop(pos)
-                if num > 14:
-                    suma_jugadasko.append(num_juego)
-                    print(num_juego)
-                    print ("Este juego no cumple porque blue es:",num)
-                    break
-                else:
-                    if num_juego in suma_jugadasok:
-                        break
-                    else:
-                        suma_jugadasok.append(num_juego)
-                        break
-
-            
-        continue
-    
-    print("Juegos que no cumplen son: ",suma_jugadasko)
-    print("Juegos que si cumplen son: ",suma_jugadasok)
-    solucion = sum(suma_jugadasok)
+    print(no_posible)
     print(solucion)
-    return suma_jugadasko, suma_jugadasok  
+    print (sum(no_posible))   
+    print(sum(solucion))                   
+    return sum(no_posible)                    
         
+    
+                                 
+                       
+        
+
+        
+
     
         
         
+
+    
+
+
+
 
        
-                 
-        
-                
-
-
-        
-        
-        
-            
-                
-                
-               
-                   
-
-    
-    
-
-
-    
-        
-             
-
-        
-
-    
-
-
-
-
-
 doc = open_doc()
-leer = read_linea(doc)
-contar = cuenta_linea(leer)
-
-
-
-
+solucion = read_lines(doc)
